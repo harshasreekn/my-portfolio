@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshasree Kankanamneeli — Supply Chain &amp; Data Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0D0F12;
+    --bg-soft: #131519;
+    --card: #16181D;
+    --ink: #F5F4F1;
+    --sub: #969AA3;
+    --line: rgba(255,255,255,0.08);
+    --gold: #C9A227;
+    --teal: #4FD1C5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter', sans-serif; line-height:1.5;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3,h4{font-family:'Inter', sans-serif; letter-spacing:-0.02em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(13,15,18,0.82); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; padding:16px 32px;}
+  .nav-name{font-weight:700; font-size:0.98rem;}
+  .nav-links{display:flex; gap:26px; list-style:none;}
+  .nav-links a{font-size:0.84rem; font-weight:500; text-decoration:none; color:var(--sub); transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-cta{
+    font-size:0.8rem; font-weight:700; text-decoration:none;
+    background:var(--gold); color:#181206; padding:9px 18px; border-radius:8px;
+    transition:opacity .2s;
+  }
+  .nav-cta:hover{opacity:0.85;}
+  @media (max-width:720px){ .nav-links{display:none;} }
+
+  /* ---------- HERO (compact) ---------- */
+  header.hero{padding:64px 0 44px;}
+  .hero-inner{max-width:700px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(201,162,39,0.1); color:var(--gold); border:1px solid rgba(201,162,39,0.28);
+    font-size:0.75rem; font-weight:600;
+    padding:6px 14px; border-radius:100px; margin-bottom:18px;
+  }
+  .eyebrow .dot{width:5px; height:5px; border-radius:50%; background:var(--gold);}
+  .hero h1{font-size:clamp(2.1rem, 4.6vw, 3rem); font-weight:800; line-height:1.12; margin-bottom:16px; color:#fff;}
+  .hero h1 .accent{color:var(--gold);}
+  .hero p.lede{font-size:1.02rem; color:var(--sub); max-width:56ch; margin-bottom:26px;}
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px;}
+  .btn{
+    font-size:0.88rem; font-weight:700; text-decoration:none;
+    padding:12px 22px; border-radius:8px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn.primary{background:var(--gold); color:#181206;}
+  .btn.primary:hover{opacity:0.86; transform:translateY(-2px);}
+  .btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.ghost:hover{border-color:var(--teal); color:var(--teal); transform:translateY(-2px);}
+
+  /* stat row — compact */
+  .stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .stat{padding:16px 18px; background:var(--card);}
+  .stat .num{font-size:1.35rem; font-weight:800; color:var(--teal);}
+  .stat .lab{font-size:0.72rem; color:var(--sub); margin-top:2px;}
+  @media (max-width:640px){ .stat-row{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- SECTIONS (tight rhythm) ---------- */
+  section{padding:56px 0;}
+  .sec-label{font-size:0.74rem; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;}
+  .sec-title{font-size:1.5rem; font-weight:700; margin-bottom:26px; color:#fff;}
+
+  /* ---------- QUICK SCAN: SKILLS ---------- */
+  .skill-scan{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-chip{
+    font-size:0.78rem; font-weight:600; color:var(--ink);
+    background:var(--card); border:1px solid var(--line); padding:7px 14px; border-radius:8px;
+  }
+  .skill-group-label{font-size:0.72rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.06em; margin:18px 0 8px; width:100%;}
+
+  /* ---------- ABOUT (condensed) ---------- */
+  .about-row{display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;}
+  .about-copy{flex:1; min-width:280px;}
+  .about-copy p{color:var(--sub); font-size:0.96rem; margin-bottom:12px;}
+  .about-copy strong{color:#fff;}
+  .about-facts{width:230px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px;}
+  .fact{padding:9px 0; border-bottom:1px solid var(--line); font-size:0.82rem;}
+  .fact:last-child{border-bottom:none;}
+  .fact .k{color:var(--sub); display:block; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;}
+
+  /* ---------- WORK: side-by-side compact cards ---------- */
+  .case-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:760px){ .case-grid{grid-template-columns:1fr;} }
+  .case-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .case-card:hover{transform:translateY(-4px); border-color:rgba(201,162,39,0.35);}
+  .thumb{
+    position:relative; width:100%; height:170px; overflow:hidden; cursor:zoom-in;
+    background:#0A0C10; border-bottom:1px solid var(--line);
+  }
+  .thumb img{width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .35s ease; display:block;}
+  .thumb:hover img{transform:scale(1.06);}
+  .thumb .zoom-tag{
+    position:absolute; bottom:8px; right:8px; background:rgba(0,0,0,0.6); color:#fff;
+    font-size:0.65rem; font-weight:600; padding:4px 9px; border-radius:100px;
+    display:flex; align-items:center; gap:4px; opacity:0; transition:opacity .2s;
+  }
+  .thumb:hover .zoom-tag{opacity:1;}
+  .case-body{padding:20px;}
+  .case-body h3{font-size:1.08rem; font-weight:700; margin-bottom:8px; color:#fff;}
+  .case-stack{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;}
+  .case-stack span{font-size:0.68rem; font-weight:600; color:var(--teal); background:rgba(79,209,197,0.08); border:1px solid rgba(79,209,197,0.25); padding:4px 9px; border-radius:100px;}
+  .case-body ul{list-style:none; color:var(--sub); font-size:0.86rem; margin-bottom:14px;}
+  .case-body li{margin-bottom:6px; padding-left:16px; position:relative;}
+  .case-body li::before{content:"→"; position:absolute; left:0; color:var(--gold);}
+  .impact-line{
+    background:rgba(201,162,39,0.07); border:1px solid rgba(201,162,39,0.22); border-radius:8px;
+    padding:11px 13px; font-size:0.8rem; color:#E9DDBB; margin-bottom:14px; line-height:1.55;
+  }
+  .impact-line b{color:var(--gold);}
+  .case-link{display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:700; color:var(--teal); text-decoration:none;}
+  .case-link:hover{text-decoration:underline;}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(6,7,9,0.92); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:40px;
+    cursor:zoom-out;
+  }
+  .lightbox.active{display:flex;}
+  .lightbox img{max-width:100%; max-height:90vh; border-radius:10px; box-shadow:0 30px 80px rgba(0,0,0,0.5);}
+  .lightbox-close{
+    position:absolute; top:24px; right:32px; color:#fff; font-size:1.6rem; font-weight:300;
+    background:rgba(255,255,255,0.1); width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+  }
+
+  /* ---------- EXPERIENCE (compact) ---------- */
+  .exp-item{display:grid; grid-template-columns:110px 1fr; gap:20px; padding:14px 0; border-bottom:1px solid var(--line);}
+  .exp-item:first-child{border-top:1px solid var(--line);}
+  .exp-item .yr{font-size:0.78rem; font-weight:700; color:var(--gold);}
+  .exp-item h4{font-size:0.95rem; font-weight:700; margin-bottom:3px; color:#fff;}
+  .exp-item p{color:var(--sub); font-size:0.86rem;}
+  .cert-wrap{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+  .cert-pill{font-size:0.76rem; font-weight:500; background:var(--card); border:1px solid var(--line); padding:8px 14px; border-radius:100px; color:var(--sub);}
+
+  /* ---------- CONTACT (compact) ---------- */
+  footer{background:var(--bg-soft); border-top:1px solid var(--line); padding:56px 0 30px; border-radius:24px 24px 0 0; margin-top:20px;}
+  footer h2{color:#fff; font-size:1.7rem; font-weight:800; margin-bottom:10px;}
+  footer p.lede{color:var(--sub); max-width:48ch; margin-bottom:26px; font-size:0.94rem;}
+  .contact-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:36px;}
+  @media (max-width:700px){ .contact-grid{grid-template-columns:repeat(2,1fr);} }
+  .contact-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:15px; transition:border-color .2s;}
+  .contact-card:hover{border-color:rgba(201,162,39,0.35);}
+  .contact-card .k{font-size:0.66rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:5px; display:block;}
+  .contact-card a{color:#fff; font-weight:600; text-decoration:none; font-size:0.85rem;}
+  .contact-card a:hover{color:var(--gold);}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; border-top:1px solid var(--line); padding-top:18px; font-size:0.76rem; color:var(--sub);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Harshasree Kankanamneeli</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#toolkit">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-inner reveal">
+      <div class="eyebrow"><span class="dot"></span>Open to Supply Chain &amp; Business Operations roles</div>
+      <h1>I turn operations data into <span class="accent">decisions worth acting on.</span></h1>
+      <p class="lede">Operations &amp; analytics professional building SQL, Power BI, and Excel work that catches problems before they get expensive.</p>
+      <div class="hero-ctas">
+        <a class="btn primary" href="#work">See the work ↓</a>
+        <a class="btn ghost" href="mailto:harshasreekn07@gmail.com">Email me</a>
+      </div>
+    </div>
+    <div class="stat-row reveal">
+      <div class="stat"><div class="num">5,000+</div><div class="lab">Units tracked</div></div>
+      <div class="stat"><div class="num">4.36%</div><div class="lab">Critical stock flagged</div></div>
+      <div class="stat"><div class="num">₹79.47K</div><div class="lab">Sales analyzed</div></div>
+      <div class="stat"><div class="num">+3.4%</div><div class="lab">MoM growth</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="sec-label reveal">Skills at a glance</div>
+    <div class="skill-scan reveal">
+      <span class="skill-group-label" style="margin-top:0;">Operations &amp; Supply Chain</span>
+      <span class="skill-chip">Inventory Analysis</span>
+      <span class="skill-chip">Logistics Reporting</span>
+      <span class="skill-chip">KPI Tracking</span>
+      <span class="skill-group-label">BI &amp; Visualization</span>
+      <span class="skill-chip">Power BI</span>
+      <span class="skill-chip">DAX</span>
+      <span class="skill-chip">Tableau</span>
+      <span class="skill-chip">Slicers &amp; Drill-through</span>
+      <span class="skill-group-label">Database &amp; Querying</span>
+      <span class="skill-chip">SQL Joins</span>
+      <span class="skill-chip">GROUP BY / CTEs</span>
+      <span class="skill-chip">Window Functions</span>
+      <span class="skill-chip">Data Cleansing</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label reveal">About</div>
+    <h2 class="sec-title reveal">The angle nobody else brings.</h2>
+    <div class="about-row reveal">
+      <div class="about-copy">
+        <p>Most analysts learn supply chain from a textbook. I learned it from a <strong>B.Sc. (Hons.) in Agriculture</strong> — watching how a delayed shipment or a bad stock estimate plays out in the real world, not just on a spreadsheet.</p>
+        <p>That shapes how I build dashboards today: not because someone asked, but because I know what an unflagged critical item actually costs downstream.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact"><span class="k">Based in</span>Hyderabad, Telangana</div>
+        <div class="fact"><span class="k">Education</span>B.Sc (Hons.) Agriculture, LPU — 8.08 CGPA</div>
+        <div class="fact"><span class="k">Seeking</span>Supply Chain / Business Ops roles</div>
+        <div class="fact"><span class="k">Focus</span>Agri-tech &amp; logistics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-label reveal">Work</div>
+    <h2 class="sec-title reveal">Selected projects</h2>
+    <div class="case-grid reveal">
+
+      <div class="case-card">
+        <div class="thumb" onclick="openLightbox('https://raw.githubusercontent.com/harshasreekn/supply-chain-project/main/dashborad%20bi.png')">
+          <img src="https://raw.githubusercontent.com/harshasreekn/supply-chain-project/main/dashborad%20bi.png" alt="Supply Chain Analytics Power BI dashboard" loading="lazy">
+          <span class="zoom-tag">⤢ Enlarge</span>
+        </div>
+        <div class="case-body">
+          <h3>Supply Chain Analytics Dashboard</h3>
+          <div class="case-stack"><span>Excel</span><span>MySQL</span><span>Power BI</span></div>
+          <ul>
+            <li>5-table inventory dataset cleaned &amp; standardized</li>
+            <li>SQL flags critical stock by warehouse</li>
+          </ul>
+          <div class="impact-line"><b>Impact:</b> Caught 4.36% of stock as critical before it ran out — an early-warning system for warehouse teams.</div>
+          <a class="case-link" href="https://github.com/harshasreekn/supply-chain-project" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="thumb" onclick="openLightbox('https://raw.githubusercontent.com/harshasreekn/Ecommerce-Sales-Dashboard/main/dashborad.png')">
+          <img src="https://raw.githubusercontent.com/harshasreekn/Ecommerce-Sales-Dashboard/main/dashborad.png" alt="E-commerce Sales Power BI dashboard" loading="lazy">
+          <span class="zoom-tag">⤢ Enlarge</span>
+        </div>
+        <div class="case-body">
+          <h3>E-Commerce Sales Dashboard</h3>
+          <div class="case-stack"><span>Power BI</span><span>SQL</span><span>DAX</span></div>
+          <ul>
+            <li>10,378 orders cleaned &amp; modeled in MySQL</li>
+            <li>KPI cards with month/category slicers</li>
+          </ul>
+          <div class="impact-line"><b>Impact:</b> Turned raw orders into a targeting tool — ₹79.47K sales made actionable, +3.4% MoM growth pinpointed.</div>
+          <a class="case-link" href="https://github.com/harshasreekn/Ecommerce-Sales-Dashboard" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-label reveal">Experience &amp; Education</div>
+    <h2 class="sec-title reveal">Where the skills came from</h2>
+    <div class="reveal">
+      <div class="exp-item">
+        <div class="yr">2025</div>
+        <div>
+          <h4>Data Analytics Job Simulation — Deloitte Australia (Forage)</h4>
+          <p>Tableau dashboards from structured client datasets; stakeholder reporting in a simulated consulting engagement.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="yr">2021–25</div>
+        <div>
+          <h4>B.Sc (Hons.) Agriculture — Lovely Professional University</h4>
+          <p>CGPA 8.08 / 10. Foundation in agricultural operations and field-level supply chain realities.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cert-wrap">
+      <span class="cert-pill">Data Analysis — Microsoft &amp; LinkedIn (2025)</span>
+      <span class="cert-pill">Power BI — Simplilearn (2024)</span>
+      <span class="cert-pill">SQL — Simplilearn (2024)</span>
+      <span class="cert-pill">Advanced Excel — Simplilearn (2024)</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="sec-label reveal">Contact</div>
+    <h2 class="reveal">Let's talk supply chain.</h2>
+    <p class="lede reveal">Open to Supply Chain Analytics, Logistics, and Business Operations roles — especially in Agri-tech.</p>
+    <div class="contact-grid reveal">
+      <div class="contact-card"><span class="k">Email</span><a href="mailto:harshasreekn07@gmail.com">harshasreekn07@gmail.com</a></div>
+      <div class="contact-card"><span class="k">Phone</span><a href="tel:+919492373739">+91 94923 73739</a></div>
+      <div class="contact-card"><span class="k">LinkedIn</span><a href="https://linkedin.com/in/contactharshasree" target="_blank" rel="noopener">contactharshasree</a></div>
+      <div class="contact-card"><span class="k">GitHub</span><a href="https://github.com/harshasreekn" target="_blank" rel="noopener">harshasreekn</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Harshasree Kankanamneeli</span>
+      <span>Hyderabad, Telangana, India</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">×</div>
+  <img id="lightbox-img" src="" alt="Enlarged dashboard screenshot">
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.1});
+  reveals.forEach(el => io.observe(el));
+
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
